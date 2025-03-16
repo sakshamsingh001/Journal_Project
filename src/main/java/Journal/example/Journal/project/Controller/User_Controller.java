@@ -102,8 +102,10 @@ public class User_Controller {
     public ResponseEntity<?> greeting() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         WeatherResponse weather = ws.getWeather("Delhi");
+      int temp=  weather.getCurrent().getTemperature();
 
-        return ResponseEntity.ok("today is this" + weather);
+
+        return ResponseEntity.ok("today is this" + temp);
     }
 
 

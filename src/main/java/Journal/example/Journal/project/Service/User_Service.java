@@ -24,14 +24,13 @@ public class User_Service {
 
 
     public boolean SaveNewUser(User user) {
-        try{
+        try {
             user.setPassword(encoder.encode(user.getPassword()));
             user.setRoles(Arrays.asList("USER"));
             ur.save(user);
-return true;
-        }
-        catch (Exception e){
-            log.error("error occured ",e);
+            return true;
+        } catch (Exception e) {
+            log.error("error occured ", e);
             return false;
         }
 
@@ -41,10 +40,9 @@ return true;
         ur.save(user);
     }
 
-    public void SaveAdminUser(User user)
-    {
+    public void SaveAdminUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList("Admin","USER   "));
+        user.setRoles(Arrays.asList("Admin", "USER   "));
         ur.save(user);
     }
 

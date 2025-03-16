@@ -16,18 +16,19 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
     @Id
-    private String   id;
+    private String id;
     @Indexed(unique = true)
     @NonNull
     private String username;
     @NonNull
     private String password;
 
-    private List<String> roles =new ArrayList<>();
-//    give all the journal entries back that are alligned to the user in journalEntries
+    private List<String> roles = new ArrayList<>();
+    //    give all the journal entries back that are alligned to the user in journalEntries
     @DBRef
-    private List<JournalEntry> journalEntries =new ArrayList<>();
-//    @JsonProperty("username")
+    private List<JournalEntry> journalEntries = new ArrayList<>();
+
+    //    @JsonProperty("username")
     public @NonNull String getUserName() {
         return username;
     }

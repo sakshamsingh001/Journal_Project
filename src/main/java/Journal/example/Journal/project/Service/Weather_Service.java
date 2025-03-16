@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 //@Component
 public class Weather_Service {
-    @Value("$weather.api.key")
+    @Value("ce36973b01e83271111f4e1b34af0f62")
     private String APIkey;
 //    private static final String API="https://api.weatherstack.com/current?access_key=API_KEY_key&query=CITY" ;
 
@@ -23,12 +23,11 @@ public class Weather_Service {
     private AppCache appCache;
 
     public WeatherResponse getWeather(String city) {
-        System.out.println(appCache.appcache.get("weather_api"));
-        String finalAPI = appCache.appcache.get("weather_api").replace("CITY", city).replace("API_KEY", APIkey);
+
+        String finalAPI = appCache.appcache.get("weather_api").replace("CITY", city).replace("API_KEY_key", APIkey);
         ResponseEntity<WeatherResponse> response = restTemplate.exchange(finalAPI, HttpMethod.GET, null, WeatherResponse.class);
         WeatherResponse body = response.getBody();
-        System.out.println("this change is nothing");
-        System.out.println("this is " + APIkey);
+
         return body;
     }
 

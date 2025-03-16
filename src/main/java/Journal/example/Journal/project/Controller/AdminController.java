@@ -29,6 +29,7 @@ public class AdminController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @PostMapping("/add-admin-user")
     public ResponseEntity<?> addAdminUser(@RequestBody User user) {
         us.SaveAdminUser(user);

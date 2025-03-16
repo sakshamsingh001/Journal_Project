@@ -14,15 +14,17 @@ import java.util.Map;
 public class AppCache {
 
     @Autowired
-    private ConfigureJournalAppRepository configJournalAppRepository ;
-    public Map<String,String> appcache = new HashMap<>();
+    private ConfigureJournalAppRepository configJournalAppRepository;
+
+    public Map<String, String> appcache;
 
     @PostConstruct
     public void init() {
-        List<config_journal_app> all= configJournalAppRepository.findAll();
-     for(config_journal_app app:all) {
-       appcache.put(app.getKey(),app.getValue());
-     }
+        appcache = new HashMap<>();
+        List<config_journal_app> all = configJournalAppRepository.findAll();
+        for (config_journal_app app : all) {
+            appcache.put(app.getKey(), app.getValue());
+        }
     }
 
 

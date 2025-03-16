@@ -24,7 +24,7 @@ public class SecurityConfig {
 
     @Autowired
     private UserDetailServiceImpl userDetailsService;
-    private final  PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public SecurityConfig(UserDetailServiceImpl userDetailsService, PasswordEncoder passwordEncoder) {
@@ -32,13 +32,13 @@ public class SecurityConfig {
         this.passwordEncoder = passwordEncoder;
     }
 
-//basic code for enabling authorization
+    //basic code for enabling authorization
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 
         return http.authorizeHttpRequests(request -> request
-                        .requestMatchers("/user/save","/user/register").permitAll()
+                        .requestMatchers("/user/save", "/user/register").permitAll()
                         .requestMatchers("/journal/**", "/user/**").authenticated()
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .anyRequest().authenticated())
@@ -46,10 +46,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -61,8 +63,6 @@ public class SecurityConfig {
 //    public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
 //    }
-
-
 
 
 }
