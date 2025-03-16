@@ -1,0 +1,7 @@
+#logging:
+#  level:
+#    root: OFF
+weather:
+  api:
+    key:ce36973b01e83271111f4e1b34af0f62
+#    src/main/java/Journal/example/Journal/project
